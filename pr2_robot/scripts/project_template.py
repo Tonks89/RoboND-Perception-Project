@@ -63,7 +63,7 @@ def pcl_callback(pcl_msg):
 
     # TODO: Voxel Grid Downsampling
     vox = cloud_filtered.make_voxel_grid_filter()
-    LEAF_SIZE = 0.005#0.01 
+    LEAF_SIZE = 0.003 #0.005#0.01 
     vox.set_leaf_size(LEAF_SIZE, LEAF_SIZE, LEAF_SIZE)
     cloud_filtered = vox.filter()
 
@@ -108,7 +108,7 @@ def pcl_callback(pcl_msg):
     # Your task is to experiment and find values that work for segmenting   objects.
     ec.set_ClusterTolerance(0.05)
     ec.set_MinClusterSize(30)
-    ec.set_MaxClusterSize(2500) #800
+    ec.set_MaxClusterSize(7000) #2500 #800
     # Search the k-d tree for clusters
     ec.set_SearchMethod(tree)
     # Extract indices for each of the discovered clusters
@@ -213,7 +213,7 @@ def pr2_mover(detected_objects): # input -> detected obj list
     pick_pose = Pose()
     place_pose = Pose()
 
-    test_scene_num.data = 3 # ||||||| change for different scene
+    test_scene_num.data = 1 # ||||||| change for different scene
 
 
     # TODO: Get/Read parameters
@@ -304,7 +304,7 @@ def pr2_mover(detected_objects): # input -> detected obj list
             #print "Service call failed: %s"%e
 
     # TODO: Output your request parameters into output yaml file
-    yaml_filename = "output3_v2_3.yaml"
+    yaml_filename = "output1_v2_5.yaml"
     send_to_yaml(yaml_filename, dict_list)
 
 
