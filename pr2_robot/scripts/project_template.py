@@ -316,7 +316,7 @@ def pr2_mover(detected_objects):
             #print "Service call failed: %s"%e
 
     # TODO: Output your request parameters into output yaml file
-    yaml_filename = "output3.yaml"
+    yaml_filename = "output_3.yaml"
     send_to_yaml(yaml_filename, dict_list)
 
 
