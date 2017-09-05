@@ -213,7 +213,7 @@ def pr2_mover(detected_objects): # input -> detected obj list
     pick_pose = Pose()
     place_pose = Pose()
 
-    test_scene_num.data = 1 # ||||||| change for different scene
+    test_scene_num.data = 3 # ||||||| change for different scene
 
 
     # TODO: Get/Read parameters
@@ -233,7 +233,10 @@ def pr2_mover(detected_objects): # input -> detected obj list
     dict_list = []
     
     
+    
     for l_object in object_list_param: # For each item in pick list
+        
+        flag_detection = 0
 
         # TODO: Get the PointCloud for a given object and obtain it's centroid
         object_name.data = l_object['name'] #||||||
@@ -241,7 +244,9 @@ def pr2_mover(detected_objects): # input -> detected obj list
 
         
 	for object in detected_objects: # scan through detected objects
-            if object.label == object_name.data: # if des. obj detected compute centroid, otherwise skip
+            if object.label == object_name.data: # if des. obj detected compute centroid, otherwise skip. 
+            #Note: in case 2 obj detected same tag, take last one - to improve.
+                flag_detection = 1
             	labels.append(object.label)
             	points_arr = ros_to_pcl(object.cloud).to_array()
                 obj_centroid = np.mean(points_arr, axis=0)
@@ -258,6 +263,7 @@ def pr2_mover(detected_objects): # input -> detected obj list
                 print('The mean or centroid is: ', obj_centroid) 
                 print('The pick pose is:  ', pick_pose.position.x, pick_pose.position.y, pick_pose.position.z) 
                 print('The pick pose is of type: ', type(pick_pose.position.x))
+
         
 
         # TODO: Create 'place_pose' for the object
@@ -284,8 +290,9 @@ def pr2_mover(detected_objects): # input -> detected obj list
         # TODO: Create a list of dictionaries (made with make_yaml_dict()) for later output to yaml format   
         #for i in range(0, len(object_list_param)):
         # Populate various ROS messages
-        yaml_dict = make_yaml_dict(test_scene_num, arm_name, object_name, pick_pose, place_pose)
-        dict_list.append(yaml_dict)       
+        if flag_detection == 1:
+             yaml_dict = make_yaml_dict(test_scene_num, arm_name, object_name, pick_pose, place_pose)
+             dict_list.append(yaml_dict)       
 
 
         # Wait for 'pick_place_routine' service to come up
@@ -304,7 +311,7 @@ def pr2_mover(detected_objects): # input -> detected obj list
             #print "Service call failed: %s"%e
 
     # TODO: Output your request parameters into output yaml file
-    yaml_filename = "output1_v2_5.yaml"
+    yaml_filename = "output3_v2_6.yaml"
     send_to_yaml(yaml_filename, dict_list)
 
 
