@@ -167,7 +167,7 @@ In scene 3 he recognized 8/8 objects:
 
 Finally, thanks to the pick and place setup, .yaml files were succesfully created for each scene. These files contain the relevant information for each of the objects detected from the pick list (all .yaml are stored in the 'Output' folder in this repository).
 
-However, although the perception pipeline works really work with all 3 scenes, I would like to tune it better in order to detect all objects successfully. Specifically, because in scene 2, the object 'book' is always mistaken for an object 'soap'. To improve this, perhaps the SVM should be trained with a wider variety of 'book' poses.
+However, although the perception pipeline works really well with all 3 scenes, I would like to tune it better in order to detect all objects successfully. Specifically, because in scene 2, the object 'book' is always mistaken for an object 'soap'. To improve this, perhaps the SVM should be trained with a wider variety of 'book' poses.
 
 Furthermore, in the future, I would like to work on going beyond the project requirements and finish the pick and place operations.
 
