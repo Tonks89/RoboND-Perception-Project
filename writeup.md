@@ -125,7 +125,7 @@ Finally, the trained SVM model was used to recognize each of the objects in our 
 
 
 ## Pick and Place Setup
-Lastly, a function (*pr2_mover()*) was designed to read in a list of objects for the robot to pick and construct a message containing the necessary information to perform pick and place operations.
+Besides the perception pipeline, a function (*pr2_mover()*) was designed to read in a list of objects for the robot to pick, and construct a message containing the necessary information to perform pick and place operations.
 
 * This function takes in the list of detected objects in the scene and compares each of them to the objects in the pick list. 
 
@@ -165,7 +165,7 @@ In scene 3 he recognized 8/8 objects:
 
 ![alt text][image11]
 
-Finally, thanks to the pick and place setup, .yaml files were succesfully created for each scene. These files contain the relevant information for each of the objects detected from the pick list (all .yaml are stored in the 'Output' folder in this repository).
+And thanks to the pick and place setup, .yaml files were succesfully created for each scene. These files contain the relevant information for each of the objects detected from the pick list (all .yaml are stored in the 'Output' folder in this repository).
 
 However, although the perception pipeline works really well with all 3 scenes, I would like to tune it better in order to detect all objects successfully. Specifically, because in scene 2, the object 'book' is always mistaken for an object 'soap'. To improve this, perhaps the SVM should be trained with a wider variety of 'book' poses.
 
