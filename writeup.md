@@ -148,7 +148,7 @@ Besides the perception pipeline, a function (*pr2_mover()*) was designed to read
 
 ## Results
 
-Thanks to the perception pipeline the robot was able to correctly recognize the objects in the scene.
+Thanks to the perception pipeline the robot was able to correctly recognize the objects in the scenes.
 
 In scene 1 he recognized 3/3 objects:
 
