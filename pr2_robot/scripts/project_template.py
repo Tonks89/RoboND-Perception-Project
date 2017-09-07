@@ -52,12 +52,12 @@ def send_to_yaml(yaml_filename, dict_list):
 
 
 
-
+# ------------------------------------- Perception pipeline ------------------------------------ #
 # --------------------- Callback function for your Point Cloud Subscriber ---------------------- #
+
 def pcl_callback(pcl_msg):
 
-
-# ----------------------> Exercise-2 TODOs:
+# ----------------------> Part 1: Filtering and RANSAC plane fitting
 
     # TODO: Convert ROS msg to PCL data
     cloud = ros_to_pcl(pcl_msg)
@@ -103,6 +103,9 @@ def pcl_callback(pcl_msg):
     # TODO: Extract inliers and outliers
     cloud_table = cloud_filtered.extract(inliers, negative=False)
     cloud_objects = cloud_filtered.extract(inliers, negative=True)
+
+
+# ----------------------> Part 2: Clustering for segmentation
 
     # TODO: Euclidean Clustering
     white_cloud = XYZRGB_to_XYZ(cloud_objects)
@@ -151,7 +154,7 @@ def pcl_callback(pcl_msg):
     pcl_cluster_pub.publish(ros_cluster_cloud)
 
 
-# ----------------------> Exercise-3 TODOs:
+# ----------------------> Part 3: Object recognition
 
     # Classify the clusters! (loop through each detected cluster one at a time)
     detected_objects_labels = []
@@ -205,7 +208,7 @@ def pcl_callback(pcl_msg):
 
 
 
-
+# ----------------------------------- Pick and Place Setup -------------------------------------- #
 # ------------------- Function to load parameters and request PickPlace service ----------------- #
 
 def pr2_mover(detected_objects): 
@@ -299,7 +302,7 @@ def pr2_mover(detected_objects):
              yaml_dict = make_yaml_dict(test_scene_num, arm_name, object_name, pick_pose, place_pose)
              dict_list.append(yaml_dict)       
 
-        # \!/ This was commented out, since we are not actually sending the messages, just detecting obj. and constructinh .yaml files \!/
+        # \!/ This was commented out, since we are not actually sending the messages, just detecting obj. and constructing .yaml files \!/
         # Wait for 'pick_place_routine' service to come up
         #rospy.wait_for_service('pick_place_routine')
 
@@ -342,7 +345,6 @@ if __name__ == '__main__':
     encoder = LabelEncoder()
     encoder.classes_ = model['classes']
     scaler = model['scaler']
-
 
     # Initialize color_list
     get_color_list.color_list = []
