@@ -26,9 +26,11 @@
 The objective of this project was to construct a perception pipeline to allow the PR2-robot to recognize specific objects in a cluttered environment for pick and place operations. The pipeline takes as input noisy data from the robot's RGB-D camera and outputs .yaml files containing objects labels, their pick and place positions, and the arm to be used during these operations.
 
 The image below shows an example of one of the cluttered environments (in Gazebo) where the perception pipeline will be tested:
+
 ![alt text][image_cover2]
 
 Here, the same environment in Rviz:
+
 ![alt text][image_cover1]
 
 
