@@ -97,7 +97,7 @@ The image below shows how the objects were segmented into their own cluster, sho
 The next step was to extract useful features (or characteristics) that would allow the robot to recognize (or assign a label) to the previous objects.
 
 #### Feature extraction
-These features were: color histograms, which capture color information, and normal histograms, which capture shape information. For the color histograms, the *HSV color space* was used because, as opposed to the RGB space, it is not sensitive to light conditions, and thus, lead to a more robust object recognition in all test scenes.
+These features were: color histograms, which capture color information, and normal histograms, which capture shape information. For the color histograms, the *HSV color space* was used because (as opposed to the RGB space) it is not sensitive to lighting conditions, and thus, resulted in a more robust object recognition in all test scenes.
 
 
 #### SVM training 
